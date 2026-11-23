@@ -31,6 +31,542 @@
 .gguide p{font-size:15px;color:var(--tx);margin-bottom:7px;line-height:1.85}
 .gguide .ana{color:var(--tx2);font-size:14.5px;border-top:1px dashed rgba(0,194,217,.25);padding-top:6px;margin-top:4px}
 .gguide .one{color:var(--yl);font-weight:700}
+</style><link rel="preconnect" href="https://miaoda.feishu.cn"><link rel="stylesheet" href="https://miaoda.feishu.cn/fonts/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&family=Inter:wght@400;500;600;700&display=swap"><style>
+/* ==================================================================
+   沥林 · PREMIUM LIGHT 设计系统 (v3)
+   语言：Apple / HarmonyOS —— 浅色、通透玻璃、连续圆角、精密排版
+   原则：留白优先、发丝级分隔线、柔和环境阴影、无霓虹、无黑光
+   ================================================================== */
+:root{
+  /* 兼容原页面变量（大量内联样式依赖这些变量） */
+  --bg:#f6f7f9; --bg2:#f1f3f7;
+  --card:linear-gradient(160deg,#ffffff,#fafbfd);
+  --line:#e5e7eb;
+  --tx:#12161c; --tx2:#5f6773; --tx3:#98a1ad;
+  --cy:#0a84ff; --or:#ff9f0a; --pu:#af52de; --gn:#30d158; --rd:#ff453a; --yl:#ffb020;
+  /* 底色与雾面 */
+  --bg:#f6f7f9;
+  --glass:rgba(255,255,255,.72);
+  --glass-2:rgba(255,255,255,.56);
+  --hair:rgba(17,24,39,.075);
+  --hair-2:rgba(17,24,39,.13);
+  /* 文字 */
+  --ink:#12161c;
+  --ink-2:#5f6773;
+  --ink-3:#98a1ad;
+  /* 强调色（iOS / HarmonyOS 取色） */
+  --blue:#0a84ff; --teal:#00a6c0; --green:#30d158;
+  --orange:#ff9f0a; --purple:#af52de; --red:#ff453a; --yellow:#ffd60a;
+  /* 半径 */
+  --r-xl:28px; --r-lg:22px; --r-md:16px; --r-sm:11px;
+  /* 阴影：环境柔光，不发光 */
+  --sh-1:0 1px 2px rgba(16,24,40,.05), 0 10px 28px -14px rgba(16,24,40,.18);
+  --sh-2:0 2px 6px rgba(16,24,40,.06), 0 26px 60px -26px rgba(16,24,40,.26);
+  --sh-in:inset 0 1px 0 rgba(255,255,255,.85);
+  --sans:"Noto Sans SC","HarmonyOS Sans SC","PingFang SC","Microsoft YaHei",-apple-system,BlinkMacSystemFont,"SF Pro Text",sans-serif;
+  --num:"SF Pro Display","Helvetica Neue",var(--sans);
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+
+*{-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--sans);color:var(--ink);font-size:15px;line-height:1.72;
+  letter-spacing:.01em;
+  background:
+    radial-gradient(1180px 720px at 6% -12%, #e6f2ff 0%, rgba(230,242,255,0) 58%),
+    radial-gradient(1020px 660px at 97% 0%, #f2ecff 0%, rgba(242,236,255,0) 56%),
+    radial-gradient(980px 720px at 52% 118%, #e9fbf1 0%, rgba(233,251,241,0) 60%),
+    linear-gradient(180deg,#fcfcfe 0%,#f5f7fa 38%,#f7f8fa 100%);
+  background-attachment:fixed;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+}
+/* 极轻环境光斑，替代原霓虹极光 */
+body::before{
+  content:"";position:fixed;inset:-25%;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(34% 30% at 20% 24%,rgba(10,132,255,.055),transparent 70%),
+    radial-gradient(30% 28% at 82% 20%,rgba(175,82,222,.05),transparent 70%),
+    radial-gradient(34% 30% at 56% 82%,rgba(48,209,88,.045),transparent 72%);
+  filter:blur(28px);
+  animation:pxDrift 34s var(--ease) infinite alternate;
+}
+body::after{content:none;display:none}   /* 去掉原网格底纹 */
+nav,.view,#tip{position:relative;z-index:40}
+
+/* ================= 顶部导航：玻璃悬浮条 ================= */
+nav{
+  background:rgba(255,255,255,.68);
+  backdrop-filter:blur(26px) saturate(180%);
+  -webkit-backdrop-filter:blur(26px) saturate(180%);
+  border-bottom:1px solid var(--hair);
+  box-shadow:0 1px 0 rgba(255,255,255,.7), 0 8px 26px -22px rgba(16,24,40,.3);
+  padding:0 18px;gap:2px;
+}
+.brand{
+  font-family:var(--sans);font-size:15.5px;font-weight:700;letter-spacing:-.01em;
+  background:none;-webkit-text-fill-color:initial;color:var(--ink);
+  border-right:1px solid var(--hair);padding:14px 16px 14px 0;margin-right:10px;
+}
+.brand::after{content:"· 决策推演";color:var(--ink-3);font-weight:500;font-size:12.5px;margin-left:8px;letter-spacing:.04em}
+nav button{
+  font-family:var(--sans);font-weight:500;font-size:14px;color:var(--ink-2);
+  padding:9px 14px;margin:6px 1px;border-radius:10px;border-bottom:0!important;
+  transition:background .24s var(--ease),color .2s,transform .24s var(--ease);
+}
+nav button:hover{color:var(--ink);background:rgba(17,24,39,.05)}
+nav button.on{
+  color:var(--ink);font-weight:650;background:rgba(10,132,255,.10);
+  box-shadow:inset 0 0 0 1px rgba(10,132,255,.16);
+  text-shadow:none;
+}
+nav button.on::after{content:none}
+.live{
+  font-family:var(--num);font-size:12.5px;font-weight:600;color:var(--ink-2);
+  background:rgba(255,255,255,.7);border:1px solid var(--hair);
+  padding:5px 12px;border-radius:99px;letter-spacing:.01em;
+}
+#unlock{
+  border:1px solid var(--hair-2);background:rgba(255,255,255,.8);color:var(--ink-2);
+  border-radius:99px;font-size:12.5px;font-weight:600;padding:7px 14px;
+  box-shadow:0 1px 2px rgba(16,24,40,.05);transition:.24s var(--ease);
+}
+#unlock:hover{background:#fff;color:var(--ink);box-shadow:0 4px 14px -6px rgba(16,24,40,.3)}
+#unlock.ok{background:rgba(48,209,88,.12);border-color:rgba(48,209,88,.4);color:#1a7f37}
+
+/* ================= 视图与卡片 ================= */
+.view{padding:26px 20px 72px;max-width:1440px}
+.s{
+  background:var(--glass);
+  backdrop-filter:blur(22px) saturate(170%);
+  -webkit-backdrop-filter:blur(22px) saturate(170%);
+  border:1px solid var(--hair);
+  border-radius:var(--r-xl);
+  padding:26px 28px 24px;
+  box-shadow:var(--sh-1),var(--sh-in);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease),border-color .3s;
+}
+.s::before{content:none}
+.s:hover{transform:translateY(-2px);box-shadow:var(--sh-2),var(--sh-in);border-color:var(--hair-2)}
+.s h2,.s h3{font-family:var(--sans);letter-spacing:-.015em;color:var(--ink)}
+.s h2{font-size:20px;font-weight:700;border-left:0;padding-left:0;margin-bottom:6px;display:flex;align-items:center;gap:9px}
+.s h2::before{
+  content:"";width:22px;height:22px;border-radius:7px;flex:none;
+  background:linear-gradient(140deg,var(--blue),var(--teal));
+  box-shadow:0 2px 8px -2px rgba(10,132,255,.5);
+}
+.s h2.or::before{background:linear-gradient(140deg,var(--orange),#ffcb6b)}
+.s h2.pu::before{background:linear-gradient(140deg,var(--purple),#d6a2ff)}
+.s h2.cy::before{background:linear-gradient(140deg,var(--teal),var(--green))}
+.s h2.gn::before{background:linear-gradient(140deg,var(--green),var(--teal))}
+.s h3{font-size:18.5px;font-weight:700;display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.sh{margin-bottom:16px}
+.note{color:var(--ink-2);font-size:13.5px;line-height:1.78;margin:8px 0 14px}
+.tag{
+  background:rgba(10,132,255,.09);color:#0a6ed1;border:1px solid rgba(10,132,255,.14);
+  font-size:11.5px;font-weight:650;letter-spacing:.04em;padding:5px 11px;border-radius:99px;
+}
+.otag{
+  background:rgba(255,159,10,.11);color:#b26a00;border:1px solid rgba(255,159,10,.22);
+  font-size:11px;font-weight:650;padding:4px 10px;border-radius:99px;letter-spacing:.03em;
+}
+
+/* ================= KPI / 指标 ================= */
+.hero{gap:16px}
+.kpi{
+  background:rgba(255,255,255,.82);border:1px solid var(--hair);border-radius:var(--r-lg);
+  padding:18px 19px;box-shadow:var(--sh-1),var(--sh-in);
+  transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.kpi::after{content:none}
+.kpi::before{
+  content:"";position:absolute;left:18px;top:0;width:26px;height:3px;border-radius:0 0 4px 4px;
+  background:linear-gradient(90deg,var(--blue),var(--teal));
+}
+.kpi.o::before{background:linear-gradient(90deg,var(--orange),var(--yellow))}
+.kpi.p::before{background:linear-gradient(90deg,var(--purple),#c9a6ff)}
+.kpi:hover{transform:translateY(-3px);box-shadow:var(--sh-2),var(--sh-in)}
+.kpi .kl{
+  font-size:10.5px;font-weight:700;color:var(--ink-3);letter-spacing:.14em;text-transform:uppercase;
+}
+.kpi .kv{
+  font-family:var(--num);font-weight:700;font-size:38px;letter-spacing:-.03em;line-height:1.15;
+  background:none;-webkit-text-fill-color:initial;color:var(--ink);
+  font-variant-numeric:tabular-nums;font-feature-settings:"tnum";
+}
+.kpi.o .kv{color:var(--orange)} .kpi.p .kv{color:var(--purple)}
+.kpi .ks{font-size:12px;color:var(--ink-3);letter-spacing:.01em}
+
+/* 读数卡 */
+.grid{gap:14px}
+.tc{
+  background:rgba(255,255,255,.66);border:1px solid var(--hair);border-radius:var(--r-md);
+  padding:16px;box-shadow:0 1px 2px rgba(16,24,40,.04);
+  transition:transform .34s var(--ease),box-shadow .34s,border-color .3s;
+}
+.tc:hover{transform:translateY(-2px);border-color:rgba(10,132,255,.28);box-shadow:0 12px 30px -18px rgba(16,24,40,.32)}
+.tc .l{font-size:11px;font-weight:700;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase}
+.tc .v{font-family:var(--num);font-weight:700;font-size:33px;color:var(--ink);letter-spacing:-.03em;font-variant-numeric:tabular-nums}
+.tc .v.o{color:var(--orange)} .tc .v.p{color:var(--purple)}
+.tc .c{font-size:12px;color:var(--ink-2);line-height:1.65}
+
+/* ================= 条形：发丝级 ================= */
+.bar{gap:12px;margin-bottom:11px;font-size:13.5px}
+.bar .l{width:92px;color:var(--ink);font-weight:600;font-size:13px}
+.bar .t{background:rgba(17,24,39,.045);border-radius:99px;height:9px}
+.bar .f{
+  border-radius:99px;background:linear-gradient(90deg,var(--blue),var(--teal));
+  box-shadow:none;transition:width .8s var(--ease);
+}
+.bar.o .f{background:linear-gradient(90deg,var(--orange),#ffc247)}
+.bar.p .f{background:linear-gradient(90deg,var(--purple),#c9a6ff)}
+.bar .x{width:88px;color:var(--ink-2);font-family:var(--num);font-variant-numeric:tabular-nums}
+
+/* ================= 遥控器（iOS 控件） ================= */
+.remote{grid-template-columns:300px 1fr;gap:20px}
+.lg .lb{font-size:12px;font-weight:700;color:var(--ink-3);letter-spacing:.1em;text-transform:uppercase;margin-bottom:9px}
+.seg{gap:7px}
+.seg button{
+  border:1px solid var(--hair);background:rgba(255,255,255,.72);color:var(--ink-2);
+  border-radius:10px;font-weight:550;font-size:13px;padding:8px 13px;
+  box-shadow:0 1px 2px rgba(16,24,40,.04);transition:.22s var(--ease);
+}
+.seg button:hover{color:var(--ink);border-color:var(--hair-2);background:#fff}
+.seg button.sel{
+  background:#fff;color:var(--ink);border-color:rgba(10,132,255,.5);font-weight:650;
+  box-shadow:0 0 0 3px rgba(10,132,255,.10),0 3px 10px -4px rgba(10,132,255,.4);
+}
+.slider{
+  height:6px;border-radius:99px;background:linear-gradient(90deg,rgba(10,132,255,.9),rgba(0,166,192,.85));
+  box-shadow:inset 0 1px 2px rgba(16,24,40,.12);margin:14px 0 12px;
+}
+.slider::-webkit-slider-thumb{
+  width:24px;height:24px;border-radius:50%;background:#fff;border:0;
+  box-shadow:0 1px 3px rgba(16,24,40,.28),0 0 0 6px rgba(255,255,255,.9);
+  transition:transform .2s var(--ease);
+}
+.slider::-webkit-slider-thumb:hover{transform:scale(1.08)}
+.slider::-moz-range-thumb{width:22px;height:22px;background:#fff;border:0;box-shadow:0 1px 3px rgba(16,24,40,.28)}
+.slval{font-family:var(--num);font-weight:700;font-size:24px;color:var(--ink);letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+
+/* 情景按钮 */
+.scn{gap:9px}
+.sc{
+  border:1px solid var(--hair);background:rgba(255,255,255,.72);border-radius:var(--r-sm);
+  padding:11px 6px;box-shadow:0 1px 2px rgba(16,24,40,.04);transition:.24s var(--ease);
+}
+.sc:hover{border-color:rgba(10,132,255,.35);transform:translateY(-2px);box-shadow:0 8px 20px -12px rgba(16,24,40,.3)}
+.sc .n{font-size:13px;font-weight:700;color:var(--ink)}
+.sc .d{font-size:11px;color:var(--ink-3)}
+.sc.sel{
+  background:#fff;border-color:rgba(10,132,255,.5);
+  box-shadow:0 0 0 3px rgba(10,132,255,.10),0 6px 16px -8px rgba(10,132,255,.4);
+}
+.sc.lock{opacity:.5}
+
+/* ================= 表格：无边框、发丝分隔 ================= */
+table{border:0;border-radius:0;font-size:13.5px;border-collapse:separate;border-spacing:0}
+th{
+  background:none;color:var(--ink-3);font-size:11px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;border:0;border-bottom:1px solid var(--hair);padding:10px 12px;text-align:left;
+}
+th:first-child{text-align:left}
+td{
+  border:0;border-bottom:1px solid rgba(17,24,39,.05);padding:12px;color:var(--ink);
+  font-variant-numeric:tabular-nums;
+}
+th{text-align:center}
+td.hot{
+  background:rgba(255,159,10,.09);border:0;border-bottom:1px solid rgba(255,159,10,.18);
+  color:#8a5000;font-weight:700;animation:none;box-shadow:none;
+}
+
+/* ================= 网络图（浅色重绘） ================= */
+.sna{background:rgba(250,251,253,.72);border:1px solid var(--hair);border-radius:var(--r-lg);padding:10px}
+.sna{max-width:1000px;margin:0 auto}
+.sna svg{display:block;width:100%;height:auto;min-width:520px;max-width:940px;margin:0 auto}
+.ne{fill:#fff;stroke:rgba(10,132,255,.55);stroke-width:1.2;filter:none}
+.nc{fill:#fff;stroke:rgba(255,159,10,.75);stroke-width:1.6;filter:none}
+.nm{fill:#f7f8fa;stroke:rgba(17,24,39,.22);stroke-dasharray:4 4;filter:none}
+.nl{stroke:rgba(17,24,39,.16);stroke-width:1}
+.nl.w2{stroke-width:1.8;stroke:rgba(10,132,255,.32)}
+.nl.w3{stroke-width:2.4;stroke:rgba(10,132,255,.45)}
+.nl.d{stroke:rgba(17,24,39,.2)}
+.nl.hi{stroke:var(--orange);filter:none}
+.nl.fade{opacity:.15}
+.ns{fill:none;stroke:rgba(17,24,39,.12);stroke-dasharray:0}
+.nt{fill:var(--ink);font-weight:600;font-size:11px}
+.nsb{fill:var(--ink-3);font-size:9px}
+.ndim.fade{opacity:.28}
+.ndim.hi .ne,.ndim.hi .nc,.ndim.hi .nm{filter:none;stroke-width:2}
+.mtx text{fill:var(--ink-3)}
+.cell:hover{stroke:rgba(10,132,255,.6);stroke-width:1.5}
+
+/* ================= 导读块：柔和底色 ================= */
+.guide{
+  background:linear-gradient(180deg,rgba(255,159,10,.075),rgba(255,159,10,.03));
+  border:1px solid rgba(255,159,10,.16);border-left:0;
+  border-radius:var(--r-md);padding:16px 18px;margin-top:14px;
+  box-shadow:0 1px 2px rgba(16,24,40,.03);
+}
+.guide .gt{font-size:12px;font-weight:700;color:#b26a00;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.guide p{font-size:13.5px;line-height:1.85;color:var(--ink);margin-bottom:7px}
+.guide .one{color:var(--ink);font-weight:650}
+.guide .ana{color:var(--ink-2);font-size:13px;border-top:1px solid rgba(255,159,10,.14);padding-top:9px;margin-top:9px}
+
+/* ================= 收尾提示 ================= */
+.fn{
+  background:rgba(255,255,255,.6);border:1px solid var(--hair);color:var(--ink-2);
+  border-radius:var(--r-md);font-size:12.5px;font-weight:500;letter-spacing:.02em;
+  padding:14px;box-shadow:var(--sh-in);font-family:var(--sans);
+}
+
+/* ================= 方法与边界页组件 ================= */
+.selgrid,.mgrid,.pr,.warns{gap:14px}
+.selc,.mcard,.prc,.wc,.cstep,.entry{
+  background:rgba(255,255,255,.7);border:1px solid var(--hair);border-radius:var(--r-lg);
+  box-shadow:0 1px 2px rgba(16,24,40,.04);transition:.3s var(--ease);
+}
+.selc::before,.mcard::before{height:2px;background:linear-gradient(90deg,var(--blue),var(--teal))}
+.selc:hover,.mcard:hover,.prc:hover,.cstep:hover{transform:translateY(-2px);box-shadow:var(--sh-1);border-color:var(--hair-2)}
+.selc .bt,.selc.p .bt,.selc.o .bt,.selc.g .bt{color:var(--blue);font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+.selc .bd,.prc .pd{font-size:13.5px;color:var(--ink);line-height:1.8}
+.selc .ex{background:rgba(255,69,58,.055);border-left:2px solid rgba(255,69,58,.45);border-radius:0 10px 10px 0;color:var(--ink-2);font-size:12.5px}
+.num{background:linear-gradient(140deg,var(--blue),var(--teal));color:#fff;border-radius:8px;box-shadow:none;font-family:var(--num)}
+.mcard h4{font-size:16px;font-weight:700}
+.mcard .sub{font-size:11px;color:var(--ink-3);letter-spacing:.06em;text-transform:uppercase}
+.mcard li{font-size:13px;color:var(--ink);line-height:1.8}
+.mcard li::before{background:var(--blue);width:5px;height:5px;top:10px}
+.lv{font-size:10.5px;letter-spacing:.06em;border-radius:99px}
+.lv.a{background:rgba(10,132,255,.1);color:#0a6ed1;border-color:rgba(10,132,255,.2)}
+.lv.b{background:rgba(255,159,10,.1);color:#b26a00;border-color:rgba(255,159,10,.2)}
+.lv.c{background:rgba(175,82,222,.1);color:#8a3bb5;border-color:rgba(175,82,222,.2)}
+.lv.d{background:rgba(255,69,58,.1);color:#c4271d;border-color:rgba(255,69,58,.2)}
+.cstep .no{background:linear-gradient(140deg,var(--blue),var(--teal));color:#fff;border-radius:10px}
+.cstep .tt{font-size:15.5px}
+.cstep .ds{font-size:13px;color:var(--ink-2)}
+.cstep .fm{font-family:var(--num);background:rgba(48,209,88,.08);border-color:rgba(48,209,88,.2);color:#1a7f37;border-radius:8px}
+.wc{background:rgba(255,69,58,.05);border-color:rgba(255,69,58,.16)}
+.wc .wt{color:#c4271d;font-size:14.5px}
+.wc .wd{font-size:13px;color:var(--ink);line-height:1.8}
+.wc .wd b{color:#8a5000}
+.stb{font-size:13px}
+.stb th{background:none;color:var(--ink-3);text-transform:uppercase;font-size:10.5px;letter-spacing:.08em;border-bottom:1px solid var(--hair)}
+.stb td{border-bottom:1px solid rgba(17,24,39,.05);color:var(--ink);padding:12px}
+.stb td:first-child{color:var(--ink);font-weight:650}
+.tw{overflow-x:auto;border-radius:var(--r-md)}
+.gguide{
+  background:linear-gradient(180deg,rgba(10,132,255,.06),rgba(10,132,255,.02));
+  border:1px solid rgba(10,132,255,.14);border-left:0;border-radius:var(--r-md);padding:16px 18px;
+}
+.gguide .gt{color:#0a6ed1;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:8px}
+.gsteps li{
+  background:rgba(255,255,255,.66);border:1px solid var(--hair);border-radius:var(--r-md);
+  font-size:13.5px;color:var(--ink);padding:14px 16px 14px 52px;margin-bottom:10px;
+}
+.gsteps li::before{
+  background:linear-gradient(140deg,var(--blue),var(--teal));color:#fff;border-radius:8px;
+  width:26px;height:26px;font-family:var(--num);font-weight:700;
+}
+.gsteps li b{color:var(--ink);font-weight:700}
+.gsteps .sub{color:var(--ink-2);font-size:12.5px}
+
+/* ================= 分档柱（② 拖一拖） ================= */
+.stg-ctl{background:rgba(255,255,255,.6);border:1px solid var(--hair);border-radius:var(--r-md);padding:14px 16px}
+.stg-lab{font-size:12px;color:var(--ink-3);font-weight:600;letter-spacing:.04em}
+.stg-rng{height:6px;border-radius:99px;background:linear-gradient(90deg,rgba(255,159,10,.9),rgba(255,214,10,.85));box-shadow:inset 0 1px 2px rgba(16,24,40,.12)}
+.stg-rng::-webkit-slider-thumb{
+  width:22px;height:22px;background:#fff;border:0;border-radius:50%;
+  box-shadow:0 1px 3px rgba(16,24,40,.26),0 0 0 5px rgba(255,255,255,.9);
+}
+.stg-val{font-family:var(--num);font-weight:700;font-size:17px;color:var(--ink);font-variant-numeric:tabular-nums}
+.stg-tip{font-size:13px;color:var(--ink-2)}
+.bi-v{font-family:var(--num);font-weight:700;letter-spacing:-.02em}
+.bi-rk{font-size:12px;color:var(--ink-3);font-weight:600}
+.bi-rk.top{color:var(--orange)}
+.bi-n{font-size:13px;color:var(--ink);font-weight:650}
+.bi.lead .bi-v{text-shadow:none}
+.bi-gh{border-radius:10px;opacity:.9}
+.bi-fl{border-radius:12px;box-shadow:none!important}
+.bi[data-k="物流"] .bi-fl{background:linear-gradient(180deg,#0a84ff,#0060df)!important}
+.bi[data-k="共富桥"] .bi-fl{background:linear-gradient(180deg,#ffb020,#c93400)!important}
+.bi[data-k="算力"] .bi-fl{background:linear-gradient(180deg,#c9a6ff,#8944ab)!important}
+.bi[data-k="文旅"] .bi-fl{background:linear-gradient(180deg,#7ee2a8,#248a3d)!important}
+.bi[data-k="物流"] .bi-v{color:#0a84ff!important}
+.bi[data-k="共富桥"] .bi-v{color:#ff9f0a!important}
+.bi[data-k="算力"] .bi-v{color:#af52de!important}
+.bi[data-k="文旅"] .bi-v{color:#30d158!important}
+.bi[data-k="物流"] .bi-gh{border-color:rgba(10,132,255,.38)!important;background:rgba(10,132,255,.06)!important}
+.bi[data-k="共富桥"] .bi-gh{border-color:rgba(255,159,10,.38)!important;background:rgba(255,159,10,.06)!important}
+.bi[data-k="算力"] .bi-gh{border-color:rgba(175,82,222,.38)!important;background:rgba(175,82,222,.06)!important}
+.bi[data-k="文旅"] .bi-gh{border-color:rgba(48,209,88,.38)!important;background:rgba(48,209,88,.06)!important}
+.bi .bi-rk.top{color:#8a5000}
+
+/* ================= 蒙特卡洛区（④） ================= */
+.mcbtn,.mcchip{background:rgba(255,255,255,.75);border:1px solid var(--hair);color:var(--ink-2);border-radius:99px;font-size:12.5px;font-weight:550}
+.mcbtn.on{background:var(--ink);border-color:var(--ink);color:#fff;font-weight:650}
+.mcchip b{font-family:var(--num)}
+.mcchip.on{background:#fff;border-color:var(--hair-2);box-shadow:0 4px 12px -6px rgba(16,24,40,.3)}
+.mcrun{background:linear-gradient(140deg,var(--blue),var(--teal));color:#fff;border-radius:99px;font-size:12.5px;font-weight:650;box-shadow:0 4px 14px -6px rgba(10,132,255,.5)}
+.mc-read{background:rgba(255,255,255,.62);border:1px solid var(--hair);border-radius:var(--r-md);padding:12px 14px}
+.mc-hint{color:var(--ink-3);font-size:12.5px}
+.mc-rv{color:var(--ink);font-size:12.5px}
+.mc-rv b{color:var(--ink);font-family:var(--num)}
+.mc-rn{font-size:12px;font-weight:700}
+.mc-rp{font-family:var(--num);color:var(--ink);font-weight:650}
+.mc-rb{height:8px;background:rgba(17,24,39,.06);border-radius:99px}
+.mc-tb td .mcbar{background:rgba(17,24,39,.06);border-radius:99px}
+.mc-tb td .mcbar i{background:linear-gradient(90deg,var(--blue),var(--teal));border-radius:99px}
+
+/* ================= 提示气泡 ================= */
+#tip{
+  background:rgba(255,255,255,.92);border:1px solid var(--hair-2);color:var(--ink);
+  backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px);
+  border-radius:14px;font-size:12.5px;line-height:1.7;padding:10px 14px;
+  box-shadow:0 12px 40px -12px rgba(16,24,40,.4);max-width:320px;
+}
+#tip b{color:var(--ink);font-weight:700}
+
+/* ================= 封面：极简苹果式 ================= */
+.hg .scan,.hg .sweep,.hg .dust,.dust{display:none!important}
+.hg .topf{display:none}
+.hg .floor{
+  background-image:linear-gradient(rgba(10,132,255,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(10,132,255,.10) 1px,transparent 1px);
+  opacity:.5;bottom:-26%;
+}
+.hg .glow{
+  background:radial-gradient(circle,rgba(255,255,255,.9),rgba(230,242,255,.5) 42%,transparent 68%);
+  box-shadow:none;
+}
+/* 标题衬底：改为白色柔光，替代原深色遮罩 */
+.cw{min-height:calc(100vh - 62px);justify-content:center;padding:26px 20px 40px}
+.cstage{width:min(920px,96vw)}
+.ceye{
+  font-size:12.5px;font-weight:650;letter-spacing:.34em;text-transform:uppercase;color:var(--ink-3);
+  text-shadow:none;
+}
+.ctitle{
+  font-family:var(--sans);font-weight:700;letter-spacing:-.035em;
+  font-size:clamp(38px,7.2vw,76px);margin:14px 0 10px;white-space:nowrap;
+  background:linear-gradient(180deg,#0f141a 0%,#2b3440 55%,#4a5563 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:none;animation:none;
+}
+.ctitle .hb{
+  background:linear-gradient(180deg,#b26a00 0%,#ff9f0a 45%,#ffc247 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+/* 标题背后的白色柔光衬底（提升可读性，替代原深色遮罩） */
+.ctxt::before{
+  background:radial-gradient(closest-side,rgba(255,255,255,.94) 0%,rgba(255,255,255,.70) 52%,rgba(255,255,255,0) 100%);
+}
+.csub{
+  font-size:14px;color:var(--ink-2);letter-spacing:.16em;font-weight:500;margin-top:2px;
+}
+.cstats{gap:0;margin-top:34px;border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:22px 0}
+.cstat{padding:0 clamp(16px,3.4vw,44px);border-right:1px solid var(--hair)}
+.cstat:last-child{border-right:0}
+.cstat .n{
+  font-family:var(--num);font-weight:700;font-size:clamp(26px,4.4vw,40px);letter-spacing:-.03em;
+  background:none;-webkit-text-fill-color:initial;color:var(--ink);filter:none;
+  font-variant-numeric:tabular-nums;line-height:1.05;
+}
+.cstat .n.o{color:var(--orange)} .cstat .n.p{color:var(--purple)}
+.cstat .l{font-size:11px;color:var(--ink-3);letter-spacing:.16em;text-transform:uppercase;margin-top:6px}
+.cbr{margin-top:22px;gap:8px}
+.cbr .bchip{
+  background:rgba(255,255,255,.72);border:1px solid var(--hair);border-radius:99px;
+  color:var(--ink-2);font-size:12px;font-weight:600;padding:7px 14px;opacity:.55;transform:none;
+  transition:.5s var(--ease);box-shadow:0 1px 2px rgba(16,24,40,.04);
+}
+.cbr .bchip.on{opacity:1;background:#fff;border-color:var(--hair-2);box-shadow:0 6px 18px -10px rgba(16,24,40,.34);transform:translateY(-1px)}
+.cbr .bchip b{color:var(--ink);font-weight:700}
+.cbr .bchip em{color:var(--ink-3);font-style:normal;font-weight:500}
+.cent{
+  margin-top:30px;background:linear-gradient(140deg,#0a84ff,#0a84ff);color:#fff;
+  border-radius:99px;font-family:var(--sans);font-weight:650;letter-spacing:.02em;font-size:15px;
+  padding:14px 34px;box-shadow:0 12px 30px -14px rgba(10,132,255,.42),inset 0 1px 0 rgba(255,255,255,.16);
+  animation:none;transition:transform .3s var(--ease),box-shadow .3s;
+}
+.cent:hover{transform:translateY(-2px);filter:none;box-shadow:0 18px 40px -16px rgba(10,132,255,.46)}
+.cfoot{color:var(--ink-3);font-size:11.5px;letter-spacing:.1em;margin-top:22px}
+
+/* 封面 SVG 桥线：浅色细线 */
+.cbridge{stroke-width:1.5;opacity:.4;filter:none!important;animation:none}
+.cbridge.act{opacity:1;stroke-width:2.6}
+.cring{stroke:rgba(17,24,39,.16);stroke-width:1}
+.cring2{stroke:rgba(17,24,39,.09);stroke-width:1}
+.cchord,.chord{stroke-width:1}
+
+/* ================= 新增组件容器（premium charts） ================= */
+.pxm-card{
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(24px) saturate(175%);
+  -webkit-backdrop-filter:blur(24px) saturate(175%);
+  border:1px solid var(--hair);border-radius:var(--r-xl);
+  padding:26px 28px;margin-bottom:18px;position:relative;
+  box-shadow:var(--sh-1),var(--sh-in);
+  transition:box-shadow .4s var(--ease),transform .4s var(--ease);
+}
+.pxm-card:hover{box-shadow:var(--sh-2),var(--sh-in)}
+.pxm-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:6px}
+.pxm-eyebrow{font-size:10.5px;font-weight:700;color:var(--ink-3);letter-spacing:.16em;text-transform:uppercase;margin-bottom:7px}
+.pxm-title{font-size:19px;font-weight:700;letter-spacing:-.015em;color:var(--ink);line-height:1.3}
+.pxm-sub{font-size:13px;color:var(--ink-2);margin-top:5px;line-height:1.7}
+.pxm-badge{
+  flex:none;font-size:11px;font-weight:650;color:var(--ink-2);background:rgba(255,255,255,.7);
+  border:1px solid var(--hair);border-radius:99px;padding:5px 11px;letter-spacing:.02em;
+}
+.pxm-legend{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px}
+.pxm-lg{display:inline-flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-2);font-weight:550}
+.pxm-lg i{width:9px;height:9px;border-radius:50%}
+.pxm-split{display:grid;grid-template-columns:1.55fr 1fr;gap:26px;align-items:start}
+.pxm-svg{width:100%;height:auto;display:block}
+.pxm-mini{font-size:11.5px;color:var(--ink-3);line-height:1.7;margin-top:12px}
+
+/* ================= 动画 ================= */
+@keyframes pxDrift{
+  0%{transform:translate(-2%,-1%) scale(1)}
+  100%{transform:translate(2%,2%) scale(1.04)}
+}
+.pxm-in{opacity:0;transform:translateY(10px);animation:pxmIn .7s var(--ease) forwards}
+@keyframes pxmIn{to{opacity:1;transform:none}}
+.pxm-draw{stroke-dasharray:2000;stroke-dashoffset:2000;animation:pxmDraw 1.15s var(--ease) forwards}
+@keyframes pxmDraw{to{stroke-dashoffset:0}}
+
+/* ================= 响应式 ================= */
+@media (max-width:1080px){
+  .pxm-split{grid-template-columns:1fr;gap:20px}
+}
+@media (max-width:760px){
+  .view{padding:18px 12px 60px}
+  .s{padding:20px 18px;border-radius:22px}
+  .pxm-card{padding:20px 18px;border-radius:22px}
+  .remote{grid-template-columns:1fr}
+  .kpi .kv{font-size:30px}
+  nav{
+    height:56px;padding:0 10px;flex-wrap:nowrap!important;overflow-x:auto;overflow-y:hidden;
+    justify-content:flex-start;gap:5px;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+  }
+  nav::-webkit-scrollbar{display:none}
+  nav .brand,nav .sp,nav #unlock{display:none}
+  nav .nb{flex:0 0 auto;padding:7px 9px;font-size:11.5px;margin:0}
+  nav .live{flex:0 0 auto;font-size:11px;padding:6px 10px;white-space:nowrap;max-width:52vw;overflow:hidden;text-overflow:ellipsis}
+  .cstats{display:grid!important;grid-template-columns:1fr 1fr;row-gap:16px;padding:14px 0}
+  .cstat{padding:0 14px}
+  .cstat:nth-child(2){border-right:0}
+  .cstat:nth-child(3),.cstat:nth-child(4){border-top:1px solid var(--hair);padding-top:14px}
+  .cbr{margin-top:16px}
+  .cbr .bchip{font-size:11.5px;padding:6px 12px}
+  .sna svg{min-width:520px}
+  .pxm-swipe{font-size:10.5px;color:#a0a8b4;text-align:center;margin:4px 0 10px;letter-spacing:.04em}
+}
+.pxm-swipe{font-size:10.5px;color:#a0a8b4;text-align:center;margin:4px 0 10px;letter-spacing:.04em}
+@media (prefers-reduced-motion:reduce){
+  body::before,.pxm-in,.pxm-draw{animation:none!important}
+}
+
 </style></head><body><nav><span class="brand">沥林 · 三线三桥一张图</span><button class="nb on" data-v="cover">封面</button><button class="nb" data-v="guide">使用指南</button><button class="nb" data-v="home">构建世界</button><button class="nb" data-v="teacher">情景推演</button><button class="nb" data-v="method">方法与边界</button><button class="nb" data-v="gap">研究空白</button><span class="sp"></span><span class="live" id="live"></span><button id="unlock">参照已锁</button></nav><div id="tip"></div><div class="view on" id="cover"><div class="hg"><div class="topf"></div><div class="floor"></div><div class="scan"></div><div class="sweep"></div><div class="glow"></div><div class="dust" id="dust"></div></div><div class="cw"><div class="cstage"><div id="cnet"></div><div class="ctxt"><div class="ceye">"十五五" · 沥林北拓南融</div><div class="ctitle">三线<span class="hb">三桥</span>一张图</div><div class="csub">镇域决策推演 · 情景模拟</div></div></div><div class="cstats" id="cstats"></div><div class="cbr" id="cbr"></div><button class="cent" onclick="enterCover()">进 入 →</button><div class="cfoot">基于本组假设的情景推演，仅供探讨，非预测值</div></div></div><div class="view" id="guide"><div class="s"><div class="sh"><h2>使用指南 · 先看懂再上手</h2><span class="tag">学员自助 · 约5分钟读完</span></div><p class="note">这是给参与学员看的说明：讲清这个模拟器是什么、怎么一步步操作、每张结果图该怎么读。</p>
 <div class="gguide"><div class="gt">这个模拟器是什么</div><p>把沥林「北拓南融」做决策的过程摆到桌面上：<b>你先按自己的直觉选一档，再和模型推出来的结果对照</b>，看自己和模型差在哪、为什么差。</p><p><span class="one">它不是考试、没有标准答案，也不是预测工具。</span></p><p class="ana">页面上所有数字，都是「按你选的假设档位推出来的情景」，仅供探讨，非预测值；缺的数据不藏起来，单独放在最后的「研究空白」。</p></div>
 <div class="sh" style="margin-top:18px"><h2>怎么操作 · 跟着顶部导航走五步</h2></div>
@@ -534,4 +1070,688 @@ $("cstats").querySelectorAll(".n").forEach(el=>{const tv=parseFloat(el.textConte
 $("cbr").innerHTML=D.BRI.map((br,i)=>`<span class="bchip"><i style="background:${bc[i]};box-shadow:0 0 9px ${bc[i]}"></i><b>${br[0]}</b><em>${br[1]}</em></span>`).join("");
 const bps=$("cnet").querySelectorAll(".cbridge"),bis=$("cbr").querySelectorAll(".bchip");let bi=0;const setB=()=>{bps.forEach((e,k)=>e.classList.toggle("act",k===bi));bis.forEach((e,k)=>e.classList.toggle("on",k===bi));};setB();clearInterval(window.__cbrT);window.__cbrT=setInterval(()=>{bi=(bi+1)%3;setB()},2700);
 (function(){const d=$("dust");if(!d)return;let h="";for(let i=0;i<40;i++){const l=(Math.random()*100).toFixed(1),sz=(1.4+Math.random()*2.7).toFixed(1),du=(9+Math.random()*10).toFixed(1),dl=(Math.random()*13).toFixed(1);h+=`<i style="left:${l}%;width:${sz}px;height:${sz}px;animation-duration:${du}s;animation-delay:-${dl}s"></i>`}d.innerHTML=h})();}
-function enterCover(){const b=document.querySelector('.nb[data-v="home"]');if(b)b.click()}/* ===== 启动 ===== */coverSVG();buildNet();readout();matrix();degree();pairMx();guides();trackA();hero();rev();if(S.s4){$("unlock").textContent="参照已解锁";$("unlock").classList.add("ok")}</script></body></html>
+function enterCover(){const b=document.querySelector('.nb[data-v="home"]');if(b)b.click()}/* ===== 启动 ===== */coverSVG();buildNet();readout();matrix();degree();pairMx();guides();trackA();hero();rev();if(S.s4){$("unlock").textContent="参照已解锁";$("unlock").classList.add("ok")}</script><script>
+/* ==================================================================
+   沥林 · PREMIUM LIGHT 引擎 (v3)
+   1) 浅色主题适配器：将历史图表中硬编码的深色/霓虹色统一映射为浅色体系
+   2) 旗舰图表：区间哑铃图 / 环形仪表 / 立场坡度图 / 敏感性龙卷风 /
+                结果分布曲线 / 四维雷达
+   所有数值均取自页面既有数据（D / S），不新增任何外部数字。
+   ================================================================== */
+(function () {
+  "use strict";
+
+  const P = {
+    blue: "#0a84ff", teal: "#00a6c0", green: "#30d158",
+    orange: "#ff9f0a", purple: "#af52de", red: "#ff453a", amber: "#ffb020",
+    ink: "#12161c", ink2: "#5f6773", ink3: "#98a1ad",
+    hair: "rgba(17,24,39,.09)", hair2: "rgba(17,24,39,.055)",
+    surface: "#f1f3f7"
+  };
+  const OPT = ["物流", "共富桥", "算力", "文旅"];
+  const CLR = { "物流": P.blue, "共富桥": P.orange, "算力": P.purple, "文旅": P.green };
+  const NUMF = 'font-family="SF Pro Display,Helvetica Neue,Noto Sans SC,sans-serif" font-feature-settings="tnum"';
+
+  const $id = function (i) { return document.getElementById(i); };
+  const esc = function (s) {
+    return String(s).replace(/[&<>"]/g, function (m) {
+      return ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[m];
+    });
+  };
+  const card = function (html) {
+    const t = document.createElement("template");
+    t.innerHTML = html.trim();
+    return t.content.firstElementChild;
+  };
+
+  /* ================================================================
+     一、浅色主题适配器
+     ================================================================ */
+  const HEX = {
+    "#00c2d9": "#0a84ff", "#00a5bd": "#0a6ed1", "#00838f": "#0060df",
+    "#00e0f5": "#0a84ff", "#00e0a0": "#00a6c0",
+    "#8ba6bd": "#5f6773", "#a9c6da": "#5f6773", "#9fb6c9": "#5f6773",
+    "#5d7a91": "#98a1ad", "#3d6478": "#cbd5e1", "#254255": "#e5e7eb",
+    "#ff9440": "#ff9f0a", "#ffb347": "#ffb020", "#e65100": "#c93400",
+    "#3ddc97": "#30d158", "#1f9e63": "#248a3d", "#7bf0b0": "#7ee2a8",
+    "#dce7f0": "#12161c", "#cfe0ee": "#12161c", "#eaf3fb": "#12161c",
+    "#bdf6ff": "#0a6ed1", "#7ff0ff": "#0a6ed1", "#a8f4ff": "#0a84ff",
+    "#ff5f6d": "#d92d20", "#ff453a": "#d92d20", "#ffd166": "#ffb020", "#ffd60a": "#ffb020",
+    "#a06bff": "#af52de", "#c9a0ff": "#c9a6ff", "#6a3fb5": "#8944ab",
+    "#0a141d": "#f6f7f9", "#0e1d29": "#f1f3f7", "#0d1a24": "#ffffff",
+    "#16293a": "#ffffff", "#132433": "#ffffff", "#17293a": "#ffffff",
+    "#122230": "#ffffff", "#1a3040": "#ffffff", "#1a2634": "#f1f3f7",
+    "#123a4d": "#ffffff", "#134050": "#eef2f8",
+    "#4a2a12": "#fff6e8", "#123a4a": "#eef2f8", "#2a3b4d": "#e5e7eb",
+    "#06131a": "#ffffff", "#06202c": "#ffffff", "#06202a": "#ffffff",
+    "#3a1e00": "#5c2c00", "#000": "#12161c", "#fff": "#ffffff",
+    "#999": "#98a1ad", "#666": "#5f6773", "#ccc": "#e5e7eb"
+  };
+  /* 强调色集合（映射后）——用于柔化大色块与渐变 */
+  const ACC = ["#0a84ff", "#ff9f0a", "#af52de", "#30d158", "#ff453a", "#d92d20", "#ffb020", "#00a6c0", "#0a6ed1"];
+  function h2rgba(hex, a) {
+    const h = hex.replace("#", "");
+    return "rgba(" + parseInt(h.substr(0, 2), 16) + "," + parseInt(h.substr(2, 2), 16) + "," + parseInt(h.substr(4, 2), 16) + "," + a + ")";
+  }
+  function lum(hex) {
+    const h = hex.replace("#", "");
+    const r = parseInt(h.substr(0, 2), 16), g = parseInt(h.substr(2, 2), 16), b = parseInt(h.substr(4, 2), 16);
+    return (0.2126 * r + 0.7152 * g + 0.0722 * b) / 255;
+  }
+  function mapColor(v) {
+    if (!v) return v;
+    const raw = v.trim();
+    /* 旧红：#5f6d 的大面积填充降为淡玫瑰，描边保留细边 */
+    if (/\(\s*255\s*,\s*95\s*,\s*109\s*,\s*([0-9.]+)\s*\)/.test(raw)) {
+      return raw.replace(/\(\s*255\s*,\s*95\s*,\s*109\s*,\s*([0-9.]+)\s*\)/g, function (m, a) {
+        const al = parseFloat(a);
+        const na = al >= .5 ? .12 : (al >= .3 ? .26 : al);
+        return "(217,45,32," + na + ")";
+      });
+    }
+    if (/^(none|transparent|currentcolor|inherit|url)/i.test(raw)) return v;
+    let s = raw.toLowerCase();
+    if (HEX[s]) return HEX[s];
+    if (/^#[0-9a-f]{6}$/.test(s)) {
+      const l = lum(s);
+      if (l < 0.22) return "#f1f3f7";
+      if (l < 0.42) return "#cbd5e1";
+      if (l < 0.58) return "#98a1ad";
+      return raw;
+    }
+    s = s
+      .replace(/rgba?\(\s*0\s*,\s*194\s*,\s*217\s*([,)])/g, "rgba(10,132,255$1")
+      .replace(/rgba?\(\s*0\s*,\s*165\s*,\s*189\s*([,)])/g, "rgba(10,110,209$1")
+      .replace(/rgba?\(\s*255\s*,\s*148\s*,\s*64\s*([,)])/g, "rgba(255,159,10$1")
+      .replace(/rgba?\(\s*255\s*,\s*179\s*,\s*71\s*([,)])/g, "rgba(255,176,32$1")
+      .replace(/rgba?\(\s*61\s*,\s*220\s*,\s*151\s*([,)])/g, "rgba(48,209,88$1")
+      .replace(/rgba?\(\s*160\s*,\s*107\s*,\s*255\s*([,)])/g, "rgba(175,82,222$1")
+      .replace(/rgba?\(\s*255\s*,\s*209\s*,\s*102\s*([,)])/g, "rgba(255,176,32$1")
+      .replace(/rgba?\(\s*255\s*,\s*95\s*,\s*109\s*([,)])/g, "rgba(255,69,58$1")
+      .replace(/rgba?\(\s*6\s*,\s*14\s*,\s*20\s*([,)])/g, "rgba(255,255,255$1");
+    const wm = s.match(/^rgba\(\s*255\s*,\s*255\s*,\s*255\s*,\s*([\d.]+)\s*\)$/);
+    if (wm) return "rgba(17,24,39," + Math.min(parseFloat(wm[1]) * 0.55, 0.14).toFixed(3) + ")";
+    const bm = s.match(/^rgba\(\s*0\s*,\s*0\s*,\s*0\s*,\s*([\d.]+)\s*\)$/);
+    if (bm) return "rgba(16,24,40," + (parseFloat(bm[1]) * 0.6).toFixed(3) + ")";
+    return raw;
+  }
+  function mapStyle(st) {
+    let s = st
+      .replace(/box-shadow\s*:[^;]*;?/gi, "")
+      .replace(/filter\s*:\s*drop-shadow\([^;]*\)\s*;?/gi, "");
+    s = s.replace(/#([0-9a-fA-F]{8})\b/g, function (m) {
+      const base = "#" + m.slice(1, 7).toLowerCase();
+      return (HEX[base] || base) + m.slice(7);
+    });
+    s = s.replace(/#([0-9a-fA-F]{3,6})\b/g, function (m) {
+      const k = m.toLowerCase();
+      return HEX[k] || m;
+    });
+    s = s
+      .replace(/rgba?\(\s*0\s*,\s*194\s*,\s*217\s*,?\s*([^)]*)\)/g, "rgba(10,132,255,$1)")
+      .replace(/rgba?\(\s*0\s*,\s*224\s*,\s*245\s*,?\s*([^)]*)\)/g, "rgba(10,132,255,$1)")
+      .replace(/rgba?\(\s*255\s*,\s*148\s*,\s*64\s*,?\s*([^)]*)\)/g, "rgba(255,159,10,$1)")
+      .replace(/rgba?\(\s*61\s*,\s*220\s*,\s*151\s*,?\s*([^)]*)\)/g, "rgba(48,209,88,$1)")
+      .replace(/rgba?\(\s*160\s*,\s*107\s*,\s*255\s*,?\s*([^)]*)\)/g, "rgba(175,82,222,$1)")
+      .replace(/rgba?\(\s*255\s*,\s*209\s*,\s*102\s*,?\s*([^)]*)\)/g, "rgba(255,176,32,$1)")
+      .replace(/rgba?\(\s*255\s*,\s*95\s*,\s*109\s*,?\s*([^)]*)\)/g, "rgba(255,69,58,$1)")
+      .replace(/rgba?\(\s*255\s*,\s*255\s*,\s*255\s*,?\s*([0-9.]+)\s*\)/g, function (m, a) {
+        return "rgba(17,24,39," + Math.min(parseFloat(a) * 0.5, 0.14).toFixed(3) + ")";
+      });
+    return s;
+  }
+
+  /* B 轨「三档刻度」重绘：原图把序号压在刻度线上，读起来像乱码 */
+  function decorateTracks() {
+    ["#mTrack", "#mTrackSrc", "#mGrade"].forEach(function (sel) {
+      const box = document.querySelector(sel);
+      if (!box) return;
+      const groups = box.querySelectorAll("g.mtc");
+      for (let i = 0; i < groups.length; i++) {
+        const g = groups[i];
+        const rect = g.querySelector("rect");
+        const lines = g.querySelectorAll("line");
+        const txt = g.querySelector("text");
+        if (!rect || !txt || lines.length < 2) continue;
+        const x = +rect.getAttribute("x"), y = +rect.getAttribute("y");
+        const w = +rect.getAttribute("width"), h = +rect.getAttribute("height");
+        if (w < 120) continue;
+        const col = rect.getAttribute("stroke") || "rgba(255,159,10,.3)";
+        lines.forEach(function (l) { l.remove(); });
+        txt.setAttribute("x", x + 26);
+        txt.setAttribute("y", y + h / 2 + 5);
+        txt.setAttribute("font-size", "13");
+        txt.setAttribute("fill", "#12161c");
+        /* 右侧 3 段色阶，表示低/中/高 */
+        const segW = 22, gap = 3, total = segW * 3 + gap * 2;
+        const sx = x + w - total - 18, sy = y + (h - 8) / 2;
+        const base = col.indexOf("255,159,10") >= 0 ? "255,159,10" : "10,132,255";
+        [0.18, 0.42, 0.72].forEach(function (a, k) {
+          const r = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+          r.setAttribute("x", sx + k * (segW + gap));
+          r.setAttribute("y", sy);
+          r.setAttribute("width", segW);
+          r.setAttribute("height", 8);
+          r.setAttribute("rx", 4);
+          r.setAttribute("fill", "rgba(" + base + "," + a + ")");
+          g.appendChild(r);
+        });
+      }
+    });
+  }
+
+  const done = new WeakSet();
+  function adaptAll() {
+    const list = document.querySelectorAll("svg");
+    for (let i = 0; i < list.length; i++) {
+      const svg = list[i];
+      if (svg.closest && svg.closest(".pxm-card")) { done.add(svg); continue; }
+      const nodes = [svg].concat(Array.prototype.slice.call(svg.querySelectorAll("*")));
+      for (let j = 0; j < nodes.length; j++) {
+        const n = nodes[j];
+        if (done.has(n)) continue;
+        done.add(n);
+        ["fill", "stroke", "stop-color", "flood-color", "color"].forEach(function (a) {
+          if (n.hasAttribute && n.hasAttribute(a)) {
+            const v = n.getAttribute(a);
+            const nv = mapColor(v);
+            if (nv !== v) n.setAttribute(a, nv);
+          }
+        });
+        if (n.getAttribute && n.getAttribute("style")) {
+          const st = n.getAttribute("style");
+          const ns = mapStyle(st);
+          if (ns !== st) n.setAttribute("style", ns);
+        }
+        const tag = n.tagName ? n.tagName.toLowerCase() : "";
+        /* 渐变：降低饱和渐变的存在感，转为柔和铺色 */
+        if (tag === "stop") {
+          const c = n.getAttribute("stop-color");
+          if (c && ACC.indexOf(c) >= 0) {
+            const so = parseFloat(n.getAttribute("stop-opacity") || "1");
+            n.setAttribute("stop-opacity", String(Math.max(.12, Math.min(.32, so * 0.34))));
+          }
+        }
+        /* 白字统一转深墨（浅底可读） */
+        if (tag === "text" && n.getAttribute("fill") === "#ffffff") n.setAttribute("fill", "#12161c");
+        /* 大面积实色块 → 低饱和淡色 + 细描边 */
+        if (tag === "rect" || tag === "path" || tag === "polygon") {
+          const f = n.getAttribute("fill");
+          if (f && ACC.indexOf(f) >= 0) {
+            let area = 0;
+            try { const bb = n.getBBox(); area = bb.width * bb.height; } catch (e) { area = 0; }
+            if (area > 2400) {
+              n.setAttribute("fill", h2rgba(f, 0.10));
+              if (!n.getAttribute("stroke") || n.getAttribute("stroke") === "none") {
+                n.setAttribute("stroke", h2rgba(f, 0.30));
+                if (!n.getAttribute("stroke-width")) n.setAttribute("stroke-width", "1");
+              }
+            }
+          }
+        }
+      }
+    }
+    /* 非 SVG 的内联样式：只做色值替换，不改动结构 */
+    const sts = document.querySelectorAll("[style]");
+    for (let k = 0; k < sts.length; k++) {
+      const el = sts[k];
+      if (el.tagName.toLowerCase() === "svg") continue;
+      if (el.closest && el.closest(".pxm-card")) continue;
+      if (done.has(el)) continue;
+      done.add(el);
+      const st = el.getAttribute("style");
+      const ns = st
+        .replace(/#([0-9a-fA-F]{6})\b/g, function (m) { return HEX[m.toLowerCase()] || m; })
+        .replace(/rgba\(255,\s*95,\s*109,/g, "rgba(217,45,32,");
+      if (ns !== st) el.setAttribute("style", ns);
+    }
+    decorateTracks();
+    patchCopy();
+    swipeHints();
+  }
+
+  function swipeHints() {
+    if (window.innerWidth > 760) return;
+    const boxes = document.querySelectorAll(".sna");
+    for (let i = 0; i < boxes.length; i++) {
+      const b = boxes[i];
+      if (b.nextElementSibling && b.nextElementSibling.classList && b.nextElementSibling.classList.contains("pxm-swipe")) continue;
+      if (b.scrollWidth <= b.clientWidth + 12) continue;
+      const h = document.createElement("div");
+      h.className = "pxm-swipe";
+      h.textContent = "← 左右滑动查看完整图 →";
+      b.parentNode.insertBefore(h, b.nextSibling);
+    }
+  }
+  let moTimer = null, mo = null;
+  function installAdapter() {
+    adaptAll();
+    if (!window.MutationObserver) return;
+    mo = new MutationObserver(function () {
+      clearTimeout(moTimer);
+      moTimer = setTimeout(function () {
+        if (mo) mo.disconnect();
+        adaptAll();
+        if (mo) mo.observe(document.body, { childList: true, subtree: true });
+      }, 170);
+    });
+    mo.observe(document.body, { childList: true, subtree: true });
+    document.addEventListener("click", function () { setTimeout(adaptAll, 260); }, true);
+  }
+
+  /* ================================================================
+     二、数据派生（与页面同口径）
+     ================================================================ */
+  function derive() {
+    const cur = {
+      "物流": D.MO["物流"][0],
+      "共富桥": D.RV[S.r],
+      "算力": D.CV[S.c],
+      "文旅": D.MO["文旅"][0]
+    };
+    /* 可摆动区间：滑块低档→高档（已投产项锁定） */
+    const band = {
+      "物流": [D.MO["物流"][0], D.MO["物流"][0]],
+      "共富桥": [D.RV.low, D.RV.high],
+      "算力": [D.CV["0.30"], D.CV["0.50"]],
+      "文旅": [D.MO["文旅"][0], D.MO["文旅"][0]]
+    };
+    /* 抽样区间：沿用参数表（用于分布曲线） */
+    const samp = {};
+    OPT.forEach(function (k) { samp[k] = [D.MO[k][1], D.MO[k][2]]; });
+    const stance = {};
+    OPT.forEach(function (k) {
+      let s = 0;
+      Object.keys(D.AH).forEach(function (st) { s += D.AH[st].find(function (x) { return x[0] === k; })[1]; });
+      stance[k] = +(s / 3).toFixed(2);
+    });
+    return { cur: cur, band: band, samp: samp, stance: stance };
+  }
+
+  /* ================================================================
+     三、图表构件
+     ================================================================ */
+  const axisX = function (v, L, R, W, max) { return L + (v / max) * (W - L - R); };
+
+  /* ---- 1. 区间哑铃图 ---- */
+  function dumbbell(anim) {
+    const v = derive();
+    const rows = OPT.slice().sort(function (a, b) { return v.cur[b] - v.cur[a]; });
+    const W = 660, T = 30, B = 40, RH = 56, H = T + B + RH * rows.length;
+    const L = 118, R = 74, MAX = 4.6;
+    let s = '<svg class="pxm-svg" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="四方案可摆动区间">';
+    s += '<defs>';
+    rows.forEach(function (k, i) {
+      s += '<linearGradient id="dbg' + i + '" x1="0" y1="0" x2="1" y2="0">' +
+        '<stop offset="0%" stop-color="' + CLR[k] + '" stop-opacity=".20"/>' +
+        '<stop offset="100%" stop-color="' + CLR[k] + '" stop-opacity=".07"/></linearGradient>';
+    });
+    s += '</defs>';
+    /* 网格 */
+    for (let g = 0; g <= 4; g++) {
+      const x = axisX(g, L, R, W, MAX);
+      s += '<line x1="' + x + '" y1="' + (T - 6) + '" x2="' + x + '" y2="' + (H - B + 6) + '" stroke="' + P.hair2 + '"/>';
+      s += '<text x="' + x + '" y="' + (H - B + 26) + '" text-anchor="middle" font-size="10.5" fill="' + P.ink3 + '" ' + NUMF + '>' + g + '</text>';
+    }
+    s += '<text x="' + (W - R + 46) + '" y="' + (H - B + 26) + '" text-anchor="middle" font-size="10.5" fill="' + P.ink3 + '">亿元</text>';
+    rows.forEach(function (k, i) {
+      const y = T + RH * i + RH / 2;
+      const lo = v.band[k][0], hi = v.band[k][1], cv = v.cur[k];
+      const x1 = axisX(lo, L, R, W, MAX), x2 = axisX(hi, L, R, W, MAX), xc = axisX(cv, L, R, W, MAX);
+      /* 序号 */
+      s += '<circle cx="' + (L - 96) + '" cy="' + y + '" r="11" fill="' + CLR[k] + '" fill-opacity=".10"/>';
+      s += '<text x="' + (L - 96) + '" y="' + (y + 4) + '" text-anchor="middle" font-size="11.5" font-weight="700" fill="' + CLR[k] + '" ' + NUMF + '>' + (i + 1) + '</text>';
+      /* 名称 */
+      s += '<text x="' + (L - 76) + '" y="' + (y + 4) + '" font-size="12.5" font-weight="650" fill="' + P.ink + '">' + esc(k) + '</text>';
+      /* 区间带 */
+      const bandW = Math.max(3, x2 - x1);
+      s += '<rect x="' + x1.toFixed(1) + '" y="' + (y - 6) + '" width="' + bandW.toFixed(1) + '" height="12" rx="6" fill="url(#dbg' + i + ')"/>';
+      s += '<line x1="' + x1.toFixed(1) + '" y1="' + (y - 11) + '" x2="' + x1.toFixed(1) + '" y2="' + (y + 11) + '" stroke="' + CLR[k] + '" stroke-opacity=".45" stroke-width="1.4"/>';
+      if (hi > lo) s += '<line x1="' + x2.toFixed(1) + '" y1="' + (y - 11) + '" x2="' + x2.toFixed(1) + '" y2="' + (y + 11) + '" stroke="' + CLR[k] + '" stroke-opacity=".45" stroke-width="1.4"/>';
+      /* 当前值 */
+      s += '<circle cx="' + xc.toFixed(1) + '" cy="' + y + '" r="7.5" fill="#ffffff" stroke="' + CLR[k] + '" stroke-width="1.8"/>';
+      s += '<circle cx="' + xc.toFixed(1) + '" cy="' + y + '" r="3" fill="' + CLR[k] + '"/>';
+      s += '<text x="' + xc.toFixed(1) + '" y="' + (y - 16) + '" text-anchor="middle" font-size="12.5" font-weight="700" fill="' + P.ink + '" ' + NUMF + '>' + cv.toFixed(2) + '</text>';
+      /* 区间读数 */
+      s += '<text x="' + (W - 6) + '" y="' + (y + 4) + '" text-anchor="end" font-size="10.5" fill="' + P.ink3 + '" ' + NUMF + '>' +
+        (hi > lo ? lo.toFixed(2) + "–" + hi.toFixed(2) : "锁定 " + cv.toFixed(2)) + '</text>';
+    });
+    s += '<line x1="' + L + '" y1="' + (H - B + 6) + '" x2="' + (W - R) + '" y2="' + (H - B + 6) + '" stroke="' + P.hair + '"/>';
+    s += "</svg>";
+    return s;
+  }
+
+  /* ---- 2. 环形仪表 ---- */
+  function ring(value, max, color, label, display, unit) {
+    const r = 44, C = 2 * Math.PI * r, f = Math.max(0, Math.min(1, value / max));
+    return '<div style="text-align:center">' +
+      '<svg class="pxm-svg" viewBox="0 0 110 110" style="max-width:112px;margin:0 auto" role="img" aria-label="' + esc(label) + '">' +
+      '<circle cx="55" cy="55" r="' + r + '" fill="none" stroke="rgba(17,24,39,.07)" stroke-width="9"/>' +
+      '<circle cx="55" cy="55" r="' + r + '" fill="none" stroke="' + color + '" stroke-width="9" stroke-linecap="round" ' +
+      'stroke-dasharray="' + (f * C).toFixed(1) + ' ' + C.toFixed(1) + '" transform="rotate(-90 55 55)"/>' +
+      '<text x="55" y="54" text-anchor="middle" font-size="19" font-weight="700" fill="' + P.ink + '" ' + NUMF + '>' + display + '</text>' +
+      '<text x="55" y="70" text-anchor="middle" font-size="9.5" fill="' + P.ink3 + '">' + (unit || "") + '</text>' +
+      "</svg>" +
+      '<div style="font-size:11px;color:' + P.ink2 + ';font-weight:600;margin-top:6px;letter-spacing:.02em">' + esc(label) + "</div></div>";
+  }
+
+  /* ---- 3. 立场坡度图（bump） ---- */
+  function bump(anim) {
+    const W = 560, H = 300, T = 42, B = 26;
+    const cols = ["经济主导", "均衡", "共富主导"];
+    const xAt = function (i) { return 96 + i * ((W - 150) / 2); };
+    const rows = OPT.length;
+    const yAt = function (r) { return T + 20 + (r - 1) * ((H - T - B - 20) / (rows - 1)); };
+    const now = D.WL[S.w];
+    let s = '<svg class="pxm-svg" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="立场如何改变排序">';
+    /* 当前立场高亮 */
+    const ci = cols.indexOf(now);
+    if (ci >= 0) {
+      const bandW = 104;
+      s += '<rect x="' + (xAt(ci) - bandW / 2) + '" y="' + (T - 14) + '" width="' + bandW + '" height="' + (H - T - B + 22) + '" rx="16" fill="rgba(10,132,255,.06)"/>';
+    }
+    cols.forEach(function (c, i) {
+      const on = c === now;
+      s += '<text x="' + xAt(i) + '" y="26" text-anchor="middle" font-size="11.5" font-weight="' + (on ? 700 : 500) + '" fill="' + (on ? P.blue : P.ink2) + '">' + esc(c) + '</text>';
+    });
+    /* 名次刻度 */
+    for (let r = 1; r <= rows; r++) {
+      s += '<line x1="70" y1="' + yAt(r) + '" x2="' + (W - 34) + '" y2="' + yAt(r) + '" stroke="' + P.hair2 + '"/>';
+    }
+    /* 路径 */
+    OPT.forEach(function (k) {
+      /* 名次：按得分在每个立场内排序 */
+      const ranks = cols.map(function (c) {
+        const arr = D.AH[c].slice().sort(function (a, b) { return b[1] - a[1]; });
+        return arr.findIndex(function (x) { return x[0] === k; }) + 1;
+      });
+      const p = cols.map(function (c, i) { return [xAt(i), yAt(ranks[i])]; });
+      const d = "M" + p[0][0] + " " + p[0][1] +
+        " C" + (p[0][0] + (p[1][0] - p[0][0]) * .55) + " " + p[0][1] + " " + (p[1][0] - (p[1][0] - p[0][0]) * .55) + " " + p[1][1] + " " + p[1][0] + " " + p[1][1] +
+        " C" + (p[1][0] + (p[2][0] - p[1][0]) * .55) + " " + p[1][1] + " " + (p[2][0] - (p[2][0] - p[1][0]) * .55) + " " + p[2][1] + " " + p[2][0] + " " + p[2][1];
+      const first = ranks[0] === 1;
+      s += '<path d="' + d + '" fill="none" stroke="' + CLR[k] + '" stroke-width="' + (first ? 2.4 : 1.7) + '" stroke-opacity="' + (first ? 1 : .62) + '" stroke-linecap="round"' + (anim ? ' class="pxm-draw"' : "") + '/>';
+      cols.forEach(function (c, i) {
+        const r = ranks[i];
+        s += '<circle cx="' + p[i][0] + '" cy="' + p[i][1] + '" r="12" fill="#ffffff" stroke="' + CLR[k] + '" stroke-width="1.6"/>';
+        s += '<text x="' + p[i][0] + '" y="' + (p[i][1] + 4) + '" text-anchor="middle" font-size="11" font-weight="700" fill="' + CLR[k] + '" ' + NUMF + '>' + r + '</text>';
+      });
+      s += '<text x="' + (xAt(0) - 26) + '" y="' + (p[0][1] + 4) + '" text-anchor="end" font-size="11" font-weight="600" fill="' + P.ink2 + '">' + esc(k) + '</text>';
+    });
+    s += "</svg>";
+    return s;
+  }
+
+  /* ---- 4. 敏感性龙卷风 ---- */
+  function tornado(anim) {
+    const rows = D.TO.map(function (r) { return { n: r[0], lo: r[1], hi: r[2] }; })
+      .sort(function (a, b) { return (b.hi - b.lo) - (a.hi - a.lo); });
+    const W = 560, RH = 46, T = 16, H = T + RH * rows.length + 20;
+    const L = 132, R = 78, MAX = Math.max.apply(null, rows.map(function (r) { return r.hi; }));
+    let s = '<svg class="pxm-svg" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="敏感性龙卷风图">';
+    s += '<defs><linearGradient id="tnG" x1="0" y1="0" x2="1" y2="0">' +
+      '<stop offset="0%" stop-color="' + P.blue + '" stop-opacity=".85"/>' +
+      '<stop offset="100%" stop-color="' + P.orange + '" stop-opacity=".9"/></linearGradient></defs>';
+    rows.forEach(function (r, i) {
+      const y = T + RH * i + RH / 2;
+      const x1 = axisX(r.lo, L, R, W, MAX), x2 = axisX(r.hi, L, R, W, MAX);
+      s += '<text x="' + (L - 12) + '" y="' + (y + 4) + '" text-anchor="end" font-size="11.5" font-weight="600" fill="' + P.ink + '">' + esc(r.n) + '</text>';
+      s += '<rect x="' + x1.toFixed(1) + '" y="' + (y - 6) + '" width="' + Math.max(2, (x2 - x1)).toFixed(1) + '" height="12" rx="6" fill="url(#tnG)"/>';
+      s += '<text x="' + (W - 8) + '" y="' + (y + 4) + '" text-anchor="end" font-size="10.5" fill="' + P.ink3 + '" ' + NUMF + '>' + r.lo.toFixed(2) + "–" + r.hi.toFixed(2) + '</text>';
+    });
+    s += '<line x1="' + L + '" y1="' + (H - 14) + '" x2="' + (W - R) + '" y2="' + (H - 14) + '" stroke="' + P.hair + '"/>';
+    s += '<text x="' + L + '" y="' + (H - 2) + '" font-size="10" fill="' + P.ink3 + '">低档</text>';
+    s += '<text x="' + (W - R) + '" y="' + (H - 2) + '" text-anchor="end" font-size="10" fill="' + P.ink3 + '">高档（亿元）</text>';
+    s += "</svg>";
+    return s;
+  }
+
+  /* ---- 5. 结果分布曲线 ---- */
+  function gauss(x, mu, sg) { return Math.exp(-Math.pow(x - mu, 2) / (2 * sg * sg)); }
+  function kde(anim) {
+    const v = derive();
+    const W = 660, H = 260, L = 54, R = 28, T = 24, B = 40;
+    const MAX = 5.4, cy = H - B;
+    let s = '<svg class="pxm-svg" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="结果分布">';
+    for (let g = 0; g <= 5; g++) {
+      const x = axisX(g, L, R, W, MAX);
+      s += '<line x1="' + x + '" y1="' + T + '" x2="' + x + '" y2="' + cy + '" stroke="' + P.hair2 + '"/>';
+      s += '<text x="' + x + '" y="' + (cy + 20) + '" text-anchor="middle" font-size="10.5" fill="' + P.ink3 + '" ' + NUMF + '>' + g + '</text>';
+    }
+    s += '<line x1="' + L + '" y1="' + cy + '" x2="' + (W - R) + '" y2="' + cy + '" stroke="' + P.hair + '"/>';
+    OPT.forEach(function (k, idx) {
+      const lo = v.samp[k][0], hi = v.samp[k][1];
+      const mu = v.cur[k], sg = Math.max(0.06, (hi - lo) / 3.92);
+      const hm = Math.max(60, (cy - T) * 0.86);
+      let pts = [];
+      for (let i = 0; i <= 90; i++) {
+        const xv = i / 90 * MAX;
+        pts.push([axisX(xv, L, R, W, MAX), cy - gauss(xv, mu, sg) * hm]);
+      }
+      const line = pts.map(function (p) { return p[0].toFixed(1) + "," + p[1].toFixed(1); }).join(" ");
+      const peakY = cy - hm;
+      s += '<polygon points="' + axisX(0, L, R, W, MAX) + "," + cy + " " + line + " " + axisX(MAX, L, R, W, MAX) + "," + cy + '" fill="' + CLR[k] + '" fill-opacity=".075"/>';
+      s += '<polyline points="' + line + '" fill="none" stroke="' + CLR[k] + '" stroke-width="2" stroke-linejoin="round"' + (anim ? ' class="pxm-draw"' : "") + "/>";
+      s += '<circle cx="' + axisX(mu, L, R, W, MAX).toFixed(1) + '" cy="' + peakY.toFixed(1) + '" r="3.2" fill="' + CLR[k] + '"/>';
+      s += '<text x="' + axisX(mu, L, R, W, MAX).toFixed(1) + '" y="' + (peakY - 10 - (idx % 2) * 0) + '" text-anchor="middle" font-size="10.5" font-weight="700" fill="' + CLR[k] + '" ' + NUMF + '>' + mu.toFixed(2) + '</text>';
+    });
+    s += '<text x="' + (W / 2) + '" y="' + (H - 4) + '" text-anchor="middle" font-size="10" fill="' + P.ink3 + '">本地受益（亿元）· 曲线越窄越高＝越确定</text>';
+    s += "</svg>";
+    return s;
+  }
+
+  /* ---- 6. 四维雷达 ---- */
+  function radar(anim) {
+    const v = derive();
+    const axes = ["期望受益", "下限保障", "结果确定性", "立场均分"];
+    const raw = {
+      "期望受益": OPT.map(function (k) { return v.cur[k]; }),
+      "下限保障": OPT.map(function (k) { return v.band[k][0]; }),
+      "结果确定性": OPT.map(function (k) { return Math.max(.15, 1 - (v.band[k][1] - v.band[k][0]) / 4.2); }),
+      "立场均分": OPT.map(function (k) { return v.stance[k]; })
+    };
+    const norm = {};
+    axes.forEach(function (a) {
+      const mx = Math.max.apply(null, raw[a]);
+      norm[a] = raw[a].map(function (x) { return Math.max(.10, mx ? x / mx : .1); });
+    });
+    const N = 320, cx = 160, cy = 158, R = 96;
+    const ang = function (i) { return (-90 + i * 90) * Math.PI / 180; };
+    const pt = function (i, t) { return [cx + R * t * Math.cos(ang(i)), cy + R * t * Math.sin(ang(i))]; };
+    let s = '<svg class="pxm-svg" viewBox="0 0 ' + N + " " + N + '" role="img" aria-label="四方案雷达">';
+    [0.25, 0.5, 0.75, 1].forEach(function (t) {
+      const p = axes.map(function (_, i) { return pt(i, t).map(function (n) { return n.toFixed(1); }).join(","); }).join(" ");
+      s += '<polygon points="' + p + '" fill="none" stroke="' + P.hair + '" stroke-width="1"/>';
+    });
+    axes.forEach(function (a, i) {
+      const e = pt(i, 1);
+      s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + e[0].toFixed(1) + '" y2="' + e[1].toFixed(1) + '" stroke="' + P.hair + '"/>';
+      const lab = pt(i, 1.30);
+      s += '<text x="' + lab[0].toFixed(1) + '" y="' + (lab[1] + 4).toFixed(1) + '" text-anchor="middle" font-size="10.5" font-weight="600" fill="' + P.ink2 + '">' + a + '</text>';
+    });
+    OPT.forEach(function (k, oi) {
+      const p = axes.map(function (a, i) { return pt(i, norm[a][oi]).map(function (n) { return n.toFixed(1); }).join(","); }).join(" ");
+      s += '<polygon points="' + p + '" fill="' + CLR[k] + '" fill-opacity=".10" stroke="' + CLR[k] + '" stroke-width="1.8"' + (anim ? ' class="pxm-in" style="animation-delay:' + (oi * 90) + 'ms"' : "") + "/>";
+      axes.forEach(function (a, i) {
+        const q = pt(i, norm[a][oi]);
+        s += '<circle cx="' + q[0].toFixed(1) + '" cy="' + q[1].toFixed(1) + '" r="2.4" fill="' + CLR[k] + '"/>';
+      });
+    });
+    s += "</svg>";
+    return s;
+  }
+
+  /* ================================================================
+     四、卡片装配
+     ================================================================ */
+  function cardsHTML(anim) {
+    const v = derive();
+    const density = D.LK.length / (D.NO.length * (D.NO.length - 1) / 2) * 100;
+    const rateMap = { low: 10, mid: 20, high: 35 };
+    const rate = rateMap[S.r] || 20;
+    const coef = parseFloat(S.c);
+    const top = OPT.slice().sort(function (a, b) { return v.cur[b] - v.cur[a]; })[0];
+
+    /* 卡片一：区间 + 仪表 */
+    let c1 = '<div class="pxm-card" id="pxmRange"><div class="pxm-head"><div>' +
+      '<div class="pxm-eyebrow">RANGE · 区间</div>' +
+      '<div class="pxm-title">四方案可摆动区间</div>' +
+      '<div class="pxm-sub">实点为当前档位；横带为低档到高档的可摆动范围。物流与文旅已投产，区间锁定。</div>' +
+      '</div><span class="pxm-badge">当前第一 · ' + esc(top) + '</span></div>' +
+      '<div class="pxm-split"><div>' + dumbbell(anim) +
+      '<div class="pxm-legend">' + OPT.map(function (k) {
+        return '<span class="pxm-lg"><i style="background:' + CLR[k] + '"></i>' + esc(k) + '</span>';
+      }).join("") + '</div></div>' +
+      '<div style="display:flex;flex-direction:column;gap:6px;justify-content:center">' +
+      ring(density, 100, P.blue, "网络密度", density.toFixed(1) + "%", "20 主体 · " + D.LK.length + " 连线") +
+      '<div style="height:1px;background:' + P.hair + ';margin:6px 0"></div>' +
+      ring(rate, 40, P.orange, "消费承接率", rate + "%", "低/中/高三档") +
+      '<div style="height:1px;background:' + P.hair + ';margin:6px 0"></div>' +
+      ring(coef, 0.6, P.purple, "算力受益系数", coef.toFixed(2), "0.30–0.50") +
+      '</div></div></div>';
+
+    /* 卡片二：坡度 + 龙卷风 */
+    let c2 = '<div class="pxm-card" id="pxmStance"><div class="pxm-head"><div>' +
+      '<div class="pxm-eyebrow">STANCE · 立场</div>' +
+      '<div class="pxm-title">换个立场，排序就变</div>' +
+      '<div class="pxm-sub">三列为三种立场，四条线为四个方案，圈内数字是名次；蓝色底为当前立场。</div>' +
+      '</div><span class="pxm-badge">当前 · ' + esc(D.WL[S.w]) + '</span></div>' +
+      '<div class="pxm-split"><div>' + bump(anim) + '</div><div>' +
+      '<div style="font-size:10.5px;font-weight:700;color:' + P.ink3 + ';letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px">敏感性 · 龙卷风</div>' +
+      tornado(anim) +
+      '<div class="pxm-mini">条越长＝该参数从低档摆到高档时变化越大，越值得先摸清。区间沿用既有参数表。</div>' +
+      '</div></div></div>';
+
+    /* 卡片三：分布 + 雷达 */
+    let c3 = '<div class="pxm-card" id="pxmDist"><div class="pxm-head"><div>' +
+      '<div class="pxm-eyebrow">DISTRIBUTION · 分布</div>' +
+      '<div class="pxm-title">结果有多不确定</div>' +
+      '<div class="pxm-sub">峰越高越窄＝结果越确定；越平越宽＝越没底。右侧雷达做四维横向对照。</div>' +
+      '</div><span class="pxm-badge">非预测值</span></div>' +
+      '<div class="pxm-split"><div>' + kde(anim) + '</div><div>' + radar(anim) +
+      '<div class="pxm-legend">' + OPT.map(function (k) {
+        return '<span class="pxm-lg"><i style="background:' + CLR[k] + '"></i>' + esc(k) + '</span>';
+      }).join("") + '</div></div></div></div>';
+
+    return c1 + c2 + c3;
+  }
+
+  /* 首页：网络体检 + 里程碑 */
+  function homeCards() {
+    const N = D.NO.length, E = D.LK.length;
+    const density = E / (N * (N - 1) / 2) * 100;
+    const deg = {};
+    D.NO.forEach(function (n) { deg[n[0]] = 0; });
+    D.LK.forEach(function (l) { deg[l[0]]++; deg[l[1]]++; });
+    const maxDeg = Math.max.apply(null, D.NO.map(function (n) { return deg[n[0]]; }));
+    const topNode = D.NO.find(function (n) { return deg[n[0]] === maxDeg; });
+    const north = D.NO.filter(function (n) { return ["链主", "配套", "聚合", "平台", "设施"].indexOf(n[2]) >= 0; });
+    const south = D.NO.filter(function (n) { return n[2] === "乡村"; });
+    const m = {}; D.LK.forEach(function (l) { m[l[0] + "|" + l[1]] = 1; m[l[1] + "|" + l[0]] = 1; });
+    let lit = 0; north.forEach(function (a) { south.forEach(function (b) { if (m[a[0] + "|" + b[0]]) lit++; }); });
+    const total = north.length * south.length;
+
+    const c = '<div class="pxm-card" id="pxmHealth"><div class="pxm-head"><div>' +
+      '<div class="pxm-eyebrow">NETWORK · 体检</div>' +
+      '<div class="pxm-title">网络体检</div>' +
+      '<div class="pxm-sub">' + N + ' 个主体本可形成 ' + (N * (N - 1) / 2) + ' 组来往，实际只连 ' + E + ' 组；南北 ' + total + ' 格只亮 ' + lit + ' 格。</div>' +
+      '</div><span class="pxm-badge">连得最多 · ' + esc(topNode ? topNode[1] : "") + '（' + maxDeg + ' 条）</span></div>' +
+      '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:14px">' +
+      ring(N, 24, P.blue, "主体", String(N), "个") +
+      ring(E, 30, P.teal, "关系连线", String(E), "条 · 含待核实") +
+      ring(density, 100, P.purple, "网络密度", density.toFixed(1) + "%", "可能配对 190 组") +
+      '</div></div>';
+    return c;
+  }
+
+  function timelineCard() {
+    const f = function (n) { return D.A.find(function (a) { return a[0] === n; }); };
+    const it = [];
+    const a23 = f("2023限上社消"), a25 = f("沥林2025 GDP"), a06 = f("中通投产"), af = f("中通满负荷");
+    if (a23) it.push(["2023", "限上社消基线", a23[1] + "，镇域消费底座"]);
+    if (a25) it.push(["2025", "沥林 GDP", a25[1] + (a25[2] ? "（" + a25[2] + "）" : "")]);
+    if (a06) it.push(["2026-06", "中通投产", a06[1] + "，" + a06[2]]);
+    if (af) it.push(["达产", "中通满负荷", af[1] + "，" + af[2]]);
+    let s = '<div class="pxm-card" id="pxmTimeline"><div class="pxm-head"><div>' +
+      '<div class="pxm-eyebrow">MILESTONE · 锚点</div>' +
+      '<div class="pxm-title">关键里程碑</div></div><span class="pxm-badge">A 级口径</span></div>' +
+      '<div style="display:flex;gap:0;margin-top:18px;flex-wrap:wrap">';
+    it.forEach(function (x, i) {
+      s += '<div style="flex:1;min-width:150px;padding:0 16px 0 0;border-right:' + (i < it.length - 1 ? "1px solid " + P.hair : "0") + '">' +
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">' +
+        '<span style="width:7px;height:7px;border-radius:50%;background:' + P.blue + ';box-shadow:0 0 0 4px rgba(10,132,255,.10)"></span>' +
+        '<span style="font-size:10.5px;font-weight:700;color:' + P.blue + ';letter-spacing:.08em">' + esc(x[0]) + '</span></div>' +
+        '<div style="font-size:14px;font-weight:700;color:' + P.ink + ';margin-bottom:4px">' + esc(x[1]) + '</div>' +
+        '<div style="font-size:11.5px;color:' + P.ink2 + ';line-height:1.6">' + esc(x[2]) + '</div></div>';
+    });
+    s += "</div></div>";
+    return s;
+  }
+
+  /* ================================================================
+     五、挂载与联动
+     ================================================================ */
+  function mount() {
+    const teacher = $id("teacher"), home = $id("home");
+    if (teacher && !$id("pxmRange")) {
+      const remote = teacher.querySelector(".remote");
+      const wrap = document.createElement("div");
+      wrap.id = "pxmWrap";
+      wrap.innerHTML = cardsHTML(true);
+      teacher.insertBefore(wrap, remote || teacher.querySelector(".fn"));
+    }
+    if (home && !$id("pxmHealth")) {
+      const hero = $id("hero");
+      const health = card(homeCards());
+      home.insertBefore(health, hero && hero.nextSibling ? hero.nextSibling : home.firstChild);
+      const ga = (function () { return document.querySelector("#ga"); })();
+      const tl = card(timelineCard());
+      if (ga && ga.closest(".s")) home.insertBefore(tl, ga.closest(".s"));
+      else home.appendChild(tl);
+    }
+  }
+
+  let sig = "";
+  function repaint() {
+    const w = $id("pxmWrap");
+    if (w) w.innerHTML = cardsHTML(false);
+    adaptAll();
+  }
+
+  function patchCopy() {
+    if (!document.body) return;
+    const w = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    let n, guard = 0;
+    while ((n = w.nextNode()) && guard++ < 3000) {
+      if (n.nodeValue && n.nodeValue.indexOf("三道刻度") >= 0) {
+        n.nodeValue = n.nodeValue.replace(/三道刻度/g, "三段色阶");
+      }
+    }
+  }
+
+  function boot() {
+    installAdapter();
+    mount();
+    /* 状态联动 */
+    sig = code() + "|" + S.r + "|" + S.c;
+    setInterval(function () {
+      const next = code() + "|" + S.r + "|" + S.c;
+      if (next !== sig) { sig = next; repaint(); }
+    }, 420);
+    /* 视图切换后补挂载与适配 */
+    document.querySelectorAll(".nb").forEach(function (b) {
+      b.addEventListener("click", function () {
+        setTimeout(function () {
+          mount();
+          adaptAll();
+        }, 240);
+      });
+    });
+    window.addEventListener("resize", function () { /* SVG 自适应，无需重绘 */ });
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", boot);
+  else boot();
+})();
+
+</script></body></html>
